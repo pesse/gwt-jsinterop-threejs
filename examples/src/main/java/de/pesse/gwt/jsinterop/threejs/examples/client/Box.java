@@ -5,15 +5,8 @@ import jsinterop.annotations.JsType;
 import jsinterop.core.Window;
 import jsinterop.core.Window.AnimationFrameCallback;
 
-import com.google.gwt.animation.client.AnimationScheduler;
-import com.google.gwt.animation.client.AnimationScheduler.AnimationCallback;
-import com.google.gwt.canvas.client.Canvas;
-import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.logical.shared.ResizeEvent;
 import com.google.gwt.event.logical.shared.ResizeHandler;
-import com.google.gwt.user.client.DOM;
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.pesse.gwt.jsinterop.threeJs.cameras.PerspectiveCamera;
 import de.pesse.gwt.jsinterop.threeJs.core.Geometry;

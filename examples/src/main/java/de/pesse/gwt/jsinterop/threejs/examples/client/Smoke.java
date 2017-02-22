@@ -1,17 +1,9 @@
 package de.pesse.gwt.jsinterop.threejs.examples.client;
 
 import jsinterop.annotations.JsIgnore;
-import jsinterop.annotations.JsPackage;
-import jsinterop.annotations.JsProperty;
 import jsinterop.annotations.JsType;
 import jsinterop.core.Window;
 import jsinterop.core.Window.AnimationFrameCallback;
-
-import com.google.gwt.animation.client.AnimationScheduler;
-import com.google.gwt.animation.client.AnimationScheduler.AnimationCallback;
-import com.google.gwt.canvas.client.Canvas;
-import com.google.gwt.user.client.ui.Composite;
-
 import de.pesse.gwt.jsinterop.threeJs.Constants;
 import de.pesse.gwt.jsinterop.threeJs.cameras.Camera;
 import de.pesse.gwt.jsinterop.threeJs.cameras.PerspectiveCamera;
