@@ -1,6 +1,11 @@
 package de.pesse.gwt.jsinterop.threejs.examples.client;
 
+import jsinterop.annotations.JsIgnore;
+import jsinterop.annotations.JsPackage;
+import jsinterop.annotations.JsProperty;
+import jsinterop.annotations.JsType;
 import jsinterop.core.Window;
+import jsinterop.core.Window.AnimationFrameCallback;
 
 import com.google.gwt.animation.client.AnimationScheduler;
 import com.google.gwt.animation.client.AnimationScheduler.AnimationCallback;
@@ -25,7 +30,8 @@ import de.pesse.gwt.jsinterop.threeJs.renderers.WebGLRenderer;
 import de.pesse.gwt.jsinterop.threeJs.scenes.Scene;
 import de.pesse.gwt.jsinterop.threeJs.textures.Texture;
 
-public class Smoke extends Composite implements AnimationCallback
+@JsType(namespace="ThreeJsExamples")
+public class Smoke
 {
 	private Clock clock;
 	private Camera camera;
@@ -35,31 +41,43 @@ public class Smoke extends Composite implements AnimationCallback
 	private Material material;
 	private Mesh mesh;
 	
+	private AnimationFrameCallback callback;
+	
 	private float cubeSineDriver = 0;
-	private Canvas canvas;
+	private Object canvas;
 
 	private Mesh[] smokeParticles;
 	
+	@JsIgnore
 	public Smoke()
-	{		
-		canvas = Canvas.createIfSupported();
-		
+	{
+		this( null );
+	}
+	
+	public Smoke( Object canvas )
+	{
 
-		initWidget(canvas);
-
+		this.canvas = canvas;
 		
+		init();
 	}
 
-	@Override
-	protected void onLoad()
+	public void init()
 	{
-		super.onLoad();
 		
 		clock = new Clock();
 		
-		renderer = new WebGLRenderer( new WebGLRenderer.ParameterBuilder()
-			.canvas(canvas.getCanvasElement())
-			.build() );
+		if ( canvas != null )
+		{
+			renderer = new WebGLRenderer( new WebGLRenderer.ParameterBuilder()
+				.canvas(canvas)
+				.build() );
+		}
+		else
+		{
+			renderer = new WebGLRenderer();
+			canvas = renderer.domElement;
+		}
 		renderer.setSize(Window.getInnerWidth(), Window.getInnerHeight());
 
 		scene = new Scene();
@@ -121,18 +139,28 @@ public class Smoke extends Composite implements AnimationCallback
 		
 		renderer.render(scene, camera);
 		
-		AnimationScheduler.get().requestAnimationFrame(this);
+
+		callback = new AnimationFrameCallback()
+		{
+			
+			@Override
+			public void execute()
+			{
+				Window.requestAnimationFrame(callback);
+				
+				double delta = clock.getDelta();
+				evolveSmoke(delta);
+				render();
+			}
+		};
+		
+		Window.requestAnimationFrame(callback);
+		
 	}
 	
-	@Override
-	public void execute(double timestamp)
+	public Object getCanvas()
 	{
-
-		AnimationScheduler.get().requestAnimationFrame(this);
-		
-		double delta = clock.getDelta();
-		evolveSmoke(delta);
-		render();
+		return canvas;
 	}
 	
 	private void evolveSmoke( double delta )
@@ -150,5 +178,4 @@ public class Smoke extends Composite implements AnimationCallback
 	    mesh.position.z = 100 + (Math.sin(cubeSineDriver) * 500);
 	    renderer.render( scene, camera );
 	}
-
 }

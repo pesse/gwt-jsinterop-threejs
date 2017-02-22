@@ -1,7 +1,9 @@
 package de.pesse.gwt.jsinterop.threejs.examples.client;
 
+import jsinterop.annotations.JsMethod;
+import jsinterop.annotations.JsPackage;
+
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 /**
@@ -14,15 +16,10 @@ public class Examples implements EntryPoint {
   /**
    * This is the entry point method.
    */
-  public void onModuleLoad() {
-	  
-	  Smoke smoke = new Smoke();
-	  
-	  
-	  RootPanel.get("content").add(panel);
-	  
-	  panel.add(smoke);
-	  
-	  
+  public void onModuleLoad() {	  
+	  init();
 	}
+  
+  @JsMethod(namespace=JsPackage.GLOBAL)
+  public static native void init();
 }

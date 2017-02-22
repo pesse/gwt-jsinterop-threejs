@@ -43,6 +43,8 @@ public interface Document
      * @return The created Element object.
      */
     <T> T createElement(String tag);
+    
+    public Node getElementById(String id);
 
     @JsType(isNative = true)
     public static class DocumentUtil {

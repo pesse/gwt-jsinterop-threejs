@@ -96,15 +96,20 @@
 						<!-- Ask GWT to create the Story of Your Compile (SOYC) (gwt:compile) -->
 						<arg>-compileReport</arg>
 						<arg>-XcompilerMetrics</arg>
+						<arg>-generateJsInteropExports</arg>
 					</compilerArgs>
 					<!-- DevMode configuration -->
 					<warDir>${project.build.directory}/${project.build.finalName}</warDir>
 					<classpathScope>compile+runtime</classpathScope>
+					<devmodeArgs>
+						<arg>-generateJsInteropExports</arg>
+					</devmodeArgs>
 					<!-- URL(s) that should be opened by DevMode (gwt:devmode). -->
 					<startupUrls>
 						<startupUrl>Examples.html</startupUrl>
 					</startupUrls>
 					<jsInteropMode>JS</jsInteropMode>
+					<generateJsInteropExports>true</generateJsInteropExports>
 				</configuration>
 			</plugin>
 

@@ -5,10 +5,14 @@
 
    <link type="text/css" rel="stylesheet" href="Examples.css">
 
-   <title>JsInterop ThreeJS - Examples</title>
+   <title>JsInterop ThreeJS - Smoke</title>
+    
+    <!-- three.js -->
+    <script type="text/javascript" language="javascript" src="js/three.js"></script>
+    <script type="text/javascript" language="javascript" src="examples/examples.nocache.js"></script>
   </head>
 
- <body>
+  <body>
 
     <!-- RECOMMENDED if your web app will not function without JavaScript enabled -->
     <noscript>
@@ -18,11 +22,18 @@
       </div>
     </noscript>
 
-    <h1>ThreeJS Examples</h1>
+    <h1>ThreeJS Smoke</h1>
 
-	<ul>
-		<li><a href="Box.html">Box</a></li>
-		<li><a href="Smoke.html">Smoke</a></li>
-	</ul>
+	<div id="content"></div>
+	
+	<script>
+		var smoke;
+		
+		function init()
+		{
+			smoke = new ThreeJsExamples.Smoke();
+			document.getElementById("content").appendChild(smoke.getCanvas());
+		}
+	</script>
   </body>
 </html>

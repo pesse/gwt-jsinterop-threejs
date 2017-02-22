@@ -3,12 +3,16 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
-   <link type="text/css" rel="stylesheet" href="Examples.css">
+    <link type="text/css" rel="stylesheet" href="Examples.css">
 
-   <title>JsInterop ThreeJS - Examples</title>
+    <title>JsInterop ThreeJS - Box</title>
+    
+    <!-- three.js -->
+    <script type="text/javascript" language="javascript" src="js/three.js"></script>
+    <script type="text/javascript" language="javascript" src="examples/examples.nocache.js"></script>
   </head>
 
- <body>
+  <body>
 
     <!-- RECOMMENDED if your web app will not function without JavaScript enabled -->
     <noscript>
@@ -18,11 +22,16 @@
       </div>
     </noscript>
 
-    <h1>ThreeJS Examples</h1>
+    <h1>Box</h1>
 
-	<ul>
-		<li><a href="Box.html">Box</a></li>
-		<li><a href="Smoke.html">Smoke</a></li>
-	</ul>
+	<div id="content"></div>
+	
+	<script>
+		function init()
+		{
+			var box = new ThreeJsExamples.Box();
+			document.getElementById("content").appendChild(box.getCanvas());
+		}
+	</script>
   </body>
 </html>

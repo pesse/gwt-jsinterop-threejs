@@ -1,6 +1,9 @@
 package de.pesse.gwt.jsinterop.threejs.examples.client;
 
+import jsinterop.annotations.JsIgnore;
+import jsinterop.annotations.JsType;
 import jsinterop.core.Window;
+import jsinterop.core.Window.AnimationFrameCallback;
 
 import com.google.gwt.animation.client.AnimationScheduler;
 import com.google.gwt.animation.client.AnimationScheduler.AnimationCallback;
@@ -24,30 +27,33 @@ import de.pesse.gwt.jsinterop.threeJs.renderers.WebGLRenderer;
 import de.pesse.gwt.jsinterop.threeJs.scenes.Scene;
 import de.pesse.gwt.jsinterop.threeJs.textures.Texture;
 
-/**
- * Entry point classes define <code>onModuleLoad()</code>.
- */
-public class TodoList extends Composite implements AnimationCallback, ResizeHandler
+@JsType(namespace="ThreeJsExamples")
+public class Box
 {
 
-	private Canvas canvas;
+	private Object canvas;
 	private PerspectiveCamera cam;
 	private WebGLRenderer renderer;
 	private Mesh mesh;
 	private Scene scene;
+	
+	private AnimationFrameCallback callback;
 
-	private VerticalPanel panel = new VerticalPanel();
-
-	public TodoList()
+	@JsIgnore
+	public Box()
 	{
-		canvas = Canvas.createIfSupported();
+		this( null );
+	}
+	
+	public Box( Object canvas )
+	{
 
-		initWidget(canvas);
-
+		this.canvas = canvas;
+		
+		init();
 	}
 
-	@Override
-	public void onLoad()
+	private void init()
 	{
 
 		cam = new PerspectiveCamera(70, (float) Window.getInnerWidth() / (float) Window.getInnerHeight(), 1, 1000);
@@ -66,39 +72,53 @@ public class TodoList extends Composite implements AnimationCallback, ResizeHand
 
 		scene.add(mesh);
 
-		float ratio = Window.getDevicePixelRatio();
-
-		renderer = new WebGLRenderer();
+		if ( canvas != null )
+		{
+			renderer = new WebGLRenderer( new WebGLRenderer.ParameterBuilder()
+				.canvas(canvas)
+				.build() );
+		}
+		else
+		{
+			renderer = new WebGLRenderer();
+			canvas = renderer.domElement;
+		}
 		renderer.setPixelRatio(Window.getDevicePixelRatio());
 		renderer.setSize(Window.getInnerWidth(), Window.getInnerHeight());
 
-		Object canvas = renderer.domElement;
+		com.google.gwt.user.client.Window.addResizeHandler(new ResizeHandler()
+		{
+			
+			@Override
+			public void onResize(ResizeEvent event)
+			{
+				cam.aspect = (float) Window.getInnerWidth() / (float) Window.getInnerHeight();
+				cam.updateProjectionMatrix();
 
-		DOM.appendChild(DOM.getElementById("content"), (Element) canvas);
-		// DocumentUtil.document.appendChild();
+				renderer.setSize(Window.getInnerWidth(), Window.getInnerHeight());
+			}
+		});
+		
+		callback = new AnimationFrameCallback()
+		{
+			
+			@Override
+			public void execute()
+			{
+				Window.requestAnimationFrame(callback);
 
-		com.google.gwt.user.client.Window.addResizeHandler(this);
+				renderer.render(scene, cam);
 
-		AnimationScheduler.get().requestAnimationFrame(this);
+				mesh.rotation.x += 0.005;
+				mesh.rotation.y += 0.01;
+			}
+		};
+		
+		Window.requestAnimationFrame(callback);
 	}
-
-	@Override
-	public void onResize(ResizeEvent event)
+	
+	public Object getCanvas()
 	{
-		cam.aspect = (float) Window.getInnerWidth() / (float) Window.getInnerHeight();
-		cam.updateProjectionMatrix();
-
-		renderer.setSize(Window.getInnerWidth(), Window.getInnerHeight());
-	}
-
-	@Override
-	public void execute(double timestamp)
-	{
-		AnimationScheduler.get().requestAnimationFrame(this);
-
-		renderer.render(scene, cam);
-
-		mesh.rotation.x += 0.005;
-		mesh.rotation.y += 0.01;
+		return canvas;
 	}
 }

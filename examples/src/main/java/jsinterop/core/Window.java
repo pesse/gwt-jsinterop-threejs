@@ -1,5 +1,6 @@
 package jsinterop.core;
 
+import jsinterop.annotations.JsFunction;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsProperty;
 import jsinterop.annotations.JsType;
@@ -80,5 +81,14 @@ public class Window {
     
     @JsProperty
     public static native float getDevicePixelRatio();
+    
+    public static native int requestAnimationFrame( AnimationFrameCallback callback );
 
+    @JsFunction
+    @FunctionalInterface
+    public interface AnimationFrameCallback
+    {
+    	public void execute();
+    }
+    
 }
