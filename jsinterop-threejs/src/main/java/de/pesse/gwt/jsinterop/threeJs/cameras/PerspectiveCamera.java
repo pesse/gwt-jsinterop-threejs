@@ -6,18 +6,18 @@ import de.pesse.gwt.jsinterop.threeJs.ThreeJsStatics;
 @JsType( namespace=ThreeJsStatics.PACKAGE_NAME, isNative=true)
 public class PerspectiveCamera extends Camera
 {
-	public float aspect;
+	public double aspect;
 	public int far;
 	public int filmGauge;
 	public int filmOffset;
 	public int focus;
 	public int fov;
 	public boolean isPerspectiveCamera;
-	public float near;
+	public double near;
 	public int view;
 	public int zoom;
 	
-	public PerspectiveCamera( int fov, float aspect, int near, int far ) {}
+	public PerspectiveCamera( int fov, double aspect, double near, int far ) {}
 	
 	public native void copy( PerspectiveCamera camera );
 	

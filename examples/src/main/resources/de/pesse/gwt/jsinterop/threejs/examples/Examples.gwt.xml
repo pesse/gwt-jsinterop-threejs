@@ -19,6 +19,7 @@
 
   <!-- Other module inherits                                      -->
   <inherits name="de.pesse.gwt.jsinterop.JsInteropThreeJs"/>
+  <inherits name="de.pesse.gwt.jsinterop.JsInteropVolumetricFire"/>
   <inherits name="jsinterop.JsInteropCore"/>
   
   <!-- Specify the app entry point class.                         -->

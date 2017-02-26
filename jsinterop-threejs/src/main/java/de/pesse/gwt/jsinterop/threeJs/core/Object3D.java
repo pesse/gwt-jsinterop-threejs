@@ -58,7 +58,7 @@ public class Object3D extends EventDispatcher
 	 * 
 	 * @return Id of the object instance
 	 */
-	@JsProperty public native long getId();
+	@JsProperty public native int getId();
 	
 	/** Used to check whether this or derived classes are Object3Ds. Default is true.
 	 * 	You should not change this, as it used internally for optimisation. */
@@ -198,7 +198,7 @@ public class Object3D extends EventDispatcher
 	 * @param id Unique number of the object instance
 	 * @return The child object with the appropriate ID or NULL
 	 */
-	public native Object3D getObjectById( long id );
+	public native Object3D getObjectById( int id );
 	
 	/** Searches through the object's children and returns the first with a matching name.	
 	 * Note that for most objects the # .name is an empty string by default. You will have to set it manually to make use of this method.

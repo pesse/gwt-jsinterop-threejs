@@ -26,6 +26,8 @@ public class Clock
 	public Clock( boolean autoStart ) {}
 	
 	public native double getDelta();
+
+	public native int getElapsedTime();
 	
 	
 }
