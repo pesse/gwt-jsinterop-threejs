@@ -6,7 +6,7 @@ import jsinterop.annotations.JsType;
 /** This class is mapped to THREE.{nameOfConstant}
  * Three.js source is constants.js
  * 
- * @author snitsche
+ * @author pesse
  *
  */
 @JsType(isNative=true, namespace=JsPackage.GLOBAL, name=ThreeJsStatics.PACKAGE_NAME)

@@ -4,10 +4,7 @@ import jsinterop.annotations.JsType;
 import de.pesse.gwt.jsinterop.threeJs.ThreeJsStatics;
 
 @JsType( namespace=ThreeJsStatics.PACKAGE_NAME, isNative=true)
-public class DirectionalLight extends Light
+public class LightShadow
 {
-	public DirectionalLight() {}
-	public DirectionalLight( int color ) {}
-	public DirectionalLight( int color, double intensity ) {}
-	
+	// TODO: Finish
 }
