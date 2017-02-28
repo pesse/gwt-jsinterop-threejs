@@ -1,5 +1,6 @@
 package de.pesse.gwt.jsinterop.threejs.examples.client;
 
+import de.pesse.gwt.jsinterop.threeJs.Constants;
 import de.pesse.gwt.jsinterop.threeJs.cameras.Camera;
 import de.pesse.gwt.jsinterop.threeJs.cameras.PerspectiveCamera;
 import de.pesse.gwt.jsinterop.threeJs.core.Clock;
@@ -80,6 +81,8 @@ public class Fireplace
 		TextureLoader textureLoader = new TextureLoader();
 		
 		Texture groundColor = textureLoader.load("images/groundcolor.jpg");
+		groundColor.wrapS = groundColor.wrapT = Constants.RepeatWrapping;
+		groundColor.repeat.set(width, height);
 		
 		
 		
