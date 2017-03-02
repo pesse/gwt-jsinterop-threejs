@@ -12,20 +12,12 @@ import de.pesse.gwt.jsinterop.threeJs.textures.Texture;
 @JsType( namespace=JsPackage.GLOBAL, isNative=true, name="Object")
 public class MeshLambertMaterialParameters extends MaterialParameters
 {
-	public int test;
-	
 	public static class Builder extends MaterialParameters.Builder
 	{
 		public Builder()
 		{
 			p = new MeshLambertMaterialParameters();
-		}
-		
-		public Builder test( int test )
-		{
-			((MeshLambertMaterialParameters)p).test = test;
-			return this;
-		}		
+		}	
 		
 		@Override
 		public Builder color(int color)

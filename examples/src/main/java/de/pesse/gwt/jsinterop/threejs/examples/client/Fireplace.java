@@ -4,6 +4,7 @@ import de.pesse.gwt.jsinterop.threeJs.Constants;
 import de.pesse.gwt.jsinterop.threeJs.cameras.Camera;
 import de.pesse.gwt.jsinterop.threeJs.cameras.PerspectiveCamera;
 import de.pesse.gwt.jsinterop.threeJs.core.Clock;
+import de.pesse.gwt.jsinterop.threeJs.geometries.PlaneBufferGeometry;
 import de.pesse.gwt.jsinterop.threeJs.helpers.AxisHelper;
 import de.pesse.gwt.jsinterop.threeJs.lights.AmbientLight;
 import de.pesse.gwt.jsinterop.threeJs.lights.Light;
@@ -82,8 +83,13 @@ public class Fireplace
 		
 		Texture groundColor = textureLoader.load("images/groundcolor.jpg");
 		groundColor.wrapS = groundColor.wrapT = Constants.RepeatWrapping;
-		groundColor.repeat.set(width, height);
+		groundColor.repeat.set(6, 6);
 		
+		Texture groundNormal = textureLoader.load("images/groundnormal.jpg");
+		groundNormal.wrapS = groundNormal.wrapT = Constants.RepeatWrapping;
+		groundNormal.repeat.set(6, 6);
+		
+		Mesh ground = new Mesh(new PlaneBufferGeometry(10, 10), null);
 		
 		
 		VolumetricFire fire = new VolumetricFire(2.5, 4, 2.5, 0.5, cam);
