@@ -3,7 +3,6 @@ package de.pesse.gwt.jsinterop.threeJs.buildTools;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.nio.file.Files;
-import java.nio.file.OpenOption;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.HashMap;
@@ -11,12 +10,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-
-import jsinterop.annotations.JsPackage;
-import jsinterop.annotations.JsType;
-import de.pesse.gwt.jsinterop.threeJs.materials.Material;
-import de.pesse.gwt.jsinterop.threeJs.materials.MeshBasicMaterial;
-import de.pesse.gwt.jsinterop.threeJs.materials.MeshBasicMaterialParameters;
 
 public class JsInteropParameterObjectBuilderCreator
 {
@@ -125,10 +118,21 @@ public class JsInteropParameterObjectBuilderCreator
 		sb.append("\t\t}\n");
 	}
 	
+	private void writeBuilderClassConstructor(StringBuffer sb )
+	{
+		sb.append("\t\tpublic " + parameterBuilderClassName + "() {\n");
+		sb.append("\t\t\tp = new " + parameterClassName + "();\n");
+		sb.append("\t\t}\n");
+	}
+	
 	private void writeBuilderClass( StringBuffer sb )
 	{
 		sb.append("\tpublic static class " + parameterBuilderClassName + " {\n\n");
 		sb.append("\t\tprivate " + parameterClassName + " p;\n");
+		sb.append("\n");
+		
+		writeBuilderClassConstructor(sb);
+		
 		sb.append("\n");
 		
 		for ( Entry<String, String> entry : fields.entrySet() )

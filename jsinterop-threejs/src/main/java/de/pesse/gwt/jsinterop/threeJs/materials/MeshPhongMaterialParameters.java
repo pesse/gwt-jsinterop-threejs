@@ -53,6 +53,10 @@ public class MeshPhongMaterialParameters {
 
 		private MeshPhongMaterialParameters p;
 
+		public Builder() {
+			p = new MeshPhongMaterialParameters();
+		}
+
 		public Builder shading( int shading ) {
 			p.shading = shading;
 			return this;

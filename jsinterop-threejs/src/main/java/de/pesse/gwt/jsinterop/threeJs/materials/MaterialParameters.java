@@ -52,6 +52,10 @@ public class MaterialParameters {
 
 		private MaterialParameters p;
 
+		public Builder() {
+			p = new MaterialParameters();
+		}
+
 		public Builder shading( int shading ) {
 			p.shading = shading;
 			return this;

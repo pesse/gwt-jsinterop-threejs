@@ -55,6 +55,10 @@ public class MeshBasicMaterialParameters {
 
 		private MeshBasicMaterialParameters p;
 
+		public Builder() {
+			p = new MeshBasicMaterialParameters();
+		}
+
 		public Builder shading( int shading ) {
 			p.shading = shading;
 			return this;

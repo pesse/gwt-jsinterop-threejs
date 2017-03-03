@@ -56,6 +56,10 @@ public class MeshLambertMaterialParameters {
 
 		private MeshLambertMaterialParameters p;
 
+		public Builder() {
+			p = new MeshLambertMaterialParameters();
+		}
+
 		public Builder shading( int shading ) {
 			p.shading = shading;
 			return this;
