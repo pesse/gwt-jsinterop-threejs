@@ -7,5 +7,5 @@ import de.pesse.gwt.jsinterop.threeJs.core.Object3D;
 @JsType( namespace=ThreeJsStatics.PACKAGE_NAME, isNative=true)
 public class Light extends Object3D
 {
-
+	public double intensity;
 }

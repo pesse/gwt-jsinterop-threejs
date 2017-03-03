@@ -4,12 +4,21 @@ import de.pesse.gwt.jsinterop.threeJs.Constants;
 import de.pesse.gwt.jsinterop.threeJs.cameras.Camera;
 import de.pesse.gwt.jsinterop.threeJs.cameras.PerspectiveCamera;
 import de.pesse.gwt.jsinterop.threeJs.core.Clock;
+import de.pesse.gwt.jsinterop.threeJs.core.Geometry;
 import de.pesse.gwt.jsinterop.threeJs.geometries.PlaneBufferGeometry;
 import de.pesse.gwt.jsinterop.threeJs.helpers.AxisHelper;
 import de.pesse.gwt.jsinterop.threeJs.lights.AmbientLight;
 import de.pesse.gwt.jsinterop.threeJs.lights.Light;
 import de.pesse.gwt.jsinterop.threeJs.lights.PointLight;
+import de.pesse.gwt.jsinterop.threeJs.loaders.JSONLoader;
+import de.pesse.gwt.jsinterop.threeJs.loaders.JSONLoader.OnJSONLoadCallback;
+import de.pesse.gwt.jsinterop.threeJs.loaders.OnLoadCallback;
 import de.pesse.gwt.jsinterop.threeJs.loaders.TextureLoader;
+import de.pesse.gwt.jsinterop.threeJs.materials.Material;
+import de.pesse.gwt.jsinterop.threeJs.materials.MeshPhongMaterial;
+import de.pesse.gwt.jsinterop.threeJs.materials.MeshPhongMaterialParameters;
+import de.pesse.gwt.jsinterop.threeJs.materials.MultiMaterial;
+import de.pesse.gwt.jsinterop.threeJs.math.Vector2;
 import de.pesse.gwt.jsinterop.threeJs.objects.Mesh;
 import de.pesse.gwt.jsinterop.threeJs.renderers.WebGLRenderer;
 import de.pesse.gwt.jsinterop.threeJs.scenes.Scene;
@@ -29,6 +38,7 @@ public class Fireplace
 	private WebGLRenderer renderer;
 	private Mesh mesh;
 	private Scene scene;
+	private Mesh fireplace;
 	
 	private AnimationFrameCallback callback;
 
@@ -89,13 +99,42 @@ public class Fireplace
 		groundNormal.wrapS = groundNormal.wrapT = Constants.RepeatWrapping;
 		groundNormal.repeat.set(6, 6);
 		
-		Mesh ground = new Mesh(new PlaneBufferGeometry(10, 10), null);
+		Mesh ground = new Mesh(
+				new PlaneBufferGeometry(10, 10), 
+				new MeshPhongMaterial(new MeshPhongMaterialParameters.Builder()
+					.map(groundColor)
+					.normalMap(groundNormal)
+					.normalScale(new Vector2(0.8, 0.8))
+					.build()));
+		ground.rotation.x = Math.PI / -2;
+		
+		scene.add(ground);
+		
+		JSONLoader loader = new JSONLoader();
+		loader.load("./models/fireplace.json", new OnJSONLoadCallback()
+		{
+			
+			@Override
+			public void onLoad(Geometry geometry, Material[] materials)
+			{
+				fireplace = new Mesh(geometry, new MultiMaterial(materials));
+				
+				scene.add(fireplace);
+			}
+		});
+		
+		double fireWidth = 1.5;
+		double fireHeight = 2;
+		double fireDepth = 1.5;
+		double sliceSpacing = 0.5;
 		
 		
-		VolumetricFire fire = new VolumetricFire(2.5, 4, 2.5, 0.5, cam);
+		
+		VolumetricFire fire = new VolumetricFire(fireWidth, fireHeight, fireDepth, sliceSpacing, cam);
 		
 		scene.add(fire.getMesh());
 		
+		fire.getMesh().position.set(0, fireHeight/2f, 0);
 		
 		callback = new AnimationFrameCallback()
 		{
@@ -108,12 +147,14 @@ public class Fireplace
 				int elapsed = clock.getElapsedTime();
 
 				  cam.position.set(
-				    Math.sin( elapsed * 0.1 ) * 8,
-				    Math.sin( elapsed * 0.5 ) * 10,
-				    Math.cos( elapsed * 0.1 ) * 8
+				    Math.sin( elapsed * 0.1 ) * 4,
+				    Math.sin( elapsed * 0.5 ) * 1 + 2,
+				    Math.cos( elapsed * 0.1 ) * 4
 				  );
 				  cam.lookAt( scene.position );
 
+				  pointLight.intensity = Math.sin(elapsed*30) * 0.25 + 3;
+				  
 				  fire.update( elapsed );
 
 				  renderer.render( scene, cam );

@@ -5,6 +5,7 @@ import de.pesse.gwt.jsinterop.threeJs.ThreeJsStatics;
 import de.pesse.gwt.jsinterop.threeJs.core.Geometry;
 import de.pesse.gwt.jsinterop.threeJs.core.Object3D;
 import de.pesse.gwt.jsinterop.threeJs.materials.Material;
+import de.pesse.gwt.jsinterop.threeJs.materials.MultiMaterial;
 
 @JsType(isNative=true, namespace=ThreeJsStatics.PACKAGE_NAME)
 public class Mesh extends Object3D
@@ -26,6 +27,13 @@ public class Mesh extends Object3D
 	 * @param material a Material
 	 */
 	public Mesh( Geometry geometry, Material material ) {}
+	
+	/** Convenience-function for strong typed possibilities
+	 * 
+	 * @param geometry
+	 * @param material
+	 */
+	public Mesh(Geometry geometry, MultiMaterial material ) {}
 	
 	/** Set the value of drawMode
 	 * 
