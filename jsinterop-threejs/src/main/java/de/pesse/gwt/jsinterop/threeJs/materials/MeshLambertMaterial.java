@@ -2,6 +2,7 @@ package de.pesse.gwt.jsinterop.threeJs.materials;
 
 import jsinterop.annotations.JsType;
 import de.pesse.gwt.jsinterop.threeJs.ThreeJsStatics;
+import de.pesse.gwt.jsinterop.threeJs.textures.Texture;
 
 /**
  * A material for non-shiny surfaces, without specular highlights.
@@ -17,6 +18,12 @@ import de.pesse.gwt.jsinterop.threeJs.ThreeJsStatics;
 @JsType( namespace=ThreeJsStatics.PACKAGE_NAME, isNative=true)
 public class MeshLambertMaterial extends Material
 {
+	public int color;
+	
+
+	public Texture map;
+	
+	public boolean wireframe;
 	
 	public MeshLambertMaterial() {}
 	

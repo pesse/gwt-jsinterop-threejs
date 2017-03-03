@@ -1,7 +1,6 @@
 package de.pesse.gwt.jsinterop.threeJs.materials;
 
 
-import de.pesse.gwt.jsinterop.threeJs.textures.Texture;
 import java.lang.Double;
 import java.lang.Long;
 import java.lang.String;
@@ -9,13 +8,13 @@ import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 import de.pesse.gwt.jsinterop.threeJs.math.Plane;
 
-/** Helptype to give access to the possible parameters of the MeshLambertMaterial object
+/** Helptype to give access to the possible parameters of the MeshPhongMaterial object
  *
  * @author JsInteropParameterObjectBuilderCreator
  *
  */
 @JsType( namespace=JsPackage.GLOBAL, isNative=true, name="Object")
-public class MeshLambertMaterialParameters {
+public class MeshPhongMaterialParameters {
 
 	public int shading;
 	public boolean needsUpdate;
@@ -30,13 +29,11 @@ public class MeshLambertMaterialParameters {
 	public boolean transparent;
 	public boolean colorWrite;
 	public boolean clipIntersection;
-	public boolean wireframe;
 	public boolean premultipliedAlpha;
 	public Long blendSrcAlpha;
 	public int blendEquation;
 	public Double blendEquationAlpha;
 	public int blending;
-	public Texture map;
 	public int blendDst;
 	public Double blendDstAlpha;
 	public boolean lights;
@@ -54,7 +51,7 @@ public class MeshLambertMaterialParameters {
 
 	public static class Builder {
 
-		private MeshLambertMaterialParameters p;
+		private MeshPhongMaterialParameters p;
 
 		public Builder shading( int shading ) {
 			p.shading = shading;
@@ -121,11 +118,6 @@ public class MeshLambertMaterialParameters {
 			return this;
 		}
 
-		public Builder wireframe( boolean wireframe ) {
-			p.wireframe = wireframe;
-			return this;
-		}
-
 		public Builder premultipliedAlpha( boolean premultipliedAlpha ) {
 			p.premultipliedAlpha = premultipliedAlpha;
 			return this;
@@ -148,11 +140,6 @@ public class MeshLambertMaterialParameters {
 
 		public Builder blending( int blending ) {
 			p.blending = blending;
-			return this;
-		}
-
-		public Builder map( Texture map ) {
-			p.map = map;
 			return this;
 		}
 
@@ -226,7 +213,7 @@ public class MeshLambertMaterialParameters {
 			return this;
 		}
 
-		public MeshLambertMaterialParameters build() {
+		public MeshPhongMaterialParameters build() {
 			return p;
 		}
 
