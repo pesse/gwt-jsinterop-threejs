@@ -5,6 +5,8 @@ import jsinterop.annotations.JsType;
 import de.pesse.gwt.jsinterop.threeJs.ThreeJsStatics;
 import de.pesse.gwt.jsinterop.threeJs.compatibility.JsArray;
 import de.pesse.gwt.jsinterop.threeJs.math.Vector;
+import de.pesse.gwt.jsinterop.threeJs.math.Vector2;
+import de.pesse.gwt.jsinterop.threeJs.math.Vector3;
 
 @JsType(isNative=true, namespace=ThreeJsStatics.PACKAGE_NAME)
 public class Geometry
@@ -15,8 +17,7 @@ public class Geometry
 	@JsProperty
 	public native int getUuid();
 	
-	@JsProperty
-	public native String getName();
+	public String name;
 	
 	@JsProperty
 	public native String getType();
@@ -24,21 +25,10 @@ public class Geometry
 	/** Returns an Array of Vertices. 
 	 * The array of vertices holds the position of every vertex in the model.
 	 * To signal an update in this array, .verticesNeedUpdate needs to be set to true.
-	 * 
-	 * @return Array of Vertices
 	 */
-	@JsProperty
-	public native JsArray<Vector> getVertices();
+	public JsArray<Vector3> vertices;
 	
-	
-	/** Sets an Array of Vertices
-	 * The array of vertices holds the position of every vertex in the model.
-	 * To signal an update in this array, .verticesNeedUpdate needs to be set to true.
-	 * 
-	 * @param Array of Vertices
-	 */
-	@JsProperty
-	public native void setVertices( JsArray<Vector> vertices );
+	public JsArray<Face3> faces;
 	
 	@JsProperty
 	public native boolean isGeometry();
