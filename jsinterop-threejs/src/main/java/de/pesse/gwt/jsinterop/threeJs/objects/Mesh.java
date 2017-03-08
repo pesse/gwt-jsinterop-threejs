@@ -10,6 +10,8 @@ import de.pesse.gwt.jsinterop.threeJs.materials.MultiMaterial;
 @JsType(isNative=true, namespace=ThreeJsStatics.PACKAGE_NAME)
 public class Mesh extends Object3D
 {	
+	public Material material;
+	
 	/** Creates a new Mesh with a new BufferGeometry and a new MeshBasicMaterial with a random color
 	 */
 	public Mesh() {}

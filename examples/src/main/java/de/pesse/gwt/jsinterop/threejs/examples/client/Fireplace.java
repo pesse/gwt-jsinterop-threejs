@@ -21,6 +21,7 @@ import de.pesse.gwt.jsinterop.threeJs.materials.MultiMaterial;
 import de.pesse.gwt.jsinterop.threeJs.math.Vector2;
 import de.pesse.gwt.jsinterop.threeJs.objects.Mesh;
 import de.pesse.gwt.jsinterop.threeJs.renderers.WebGLRenderer;
+import de.pesse.gwt.jsinterop.threeJs.renderers.WebGLRendererParameters;
 import de.pesse.gwt.jsinterop.threeJs.scenes.Scene;
 import de.pesse.gwt.jsinterop.threeJs.textures.Texture;
 import de.pesse.gwt.jsinterop.volumetricFire.VolumetricFire;
@@ -60,7 +61,7 @@ public class Fireplace
 	{
 		if ( canvas != null )
 		{
-			renderer = new WebGLRenderer( new WebGLRenderer.ParameterBuilder()
+			renderer = new WebGLRenderer( new WebGLRendererParameters.Builder()
 				.canvas(canvas)
 				.build() );
 		}
