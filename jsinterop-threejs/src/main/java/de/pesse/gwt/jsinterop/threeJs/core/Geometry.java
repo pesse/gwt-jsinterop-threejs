@@ -31,6 +31,12 @@ public class Geometry
 	 */
 	public JsArray<Face3> faces;
 	
+	/** Helper-function to get the faces as native Java Array
+	 * 
+	 * @return
+	 */
+	@JsProperty(name="faces") public native Face3[] getFacesArray(); 
+	
 	/** Array of face UV layers, used for mapping textures onto the geometry.
 	 * Each UV layer is an array of UVs matching the order and number of vertices in faces.
 	 * To signal an update in this array, Geometry.uvsNeedUpdate needs to be set to true.
@@ -103,6 +109,12 @@ public class Geometry
 	 * To signal an update in this array, .verticesNeedUpdate needs to be set to true.
 	 */
 	public JsArray<Vector3> vertices;
+	
+	/** Helper-function to get the vertices as native Java-Array
+	 * 
+	 * @return
+	 */
+	@JsProperty(name="vertices") public native Vector3[] getVerticesArray();
 
 	/** Set to true if the vertices array has been updated.*/
 	public boolean verticesNeedUpdate;
