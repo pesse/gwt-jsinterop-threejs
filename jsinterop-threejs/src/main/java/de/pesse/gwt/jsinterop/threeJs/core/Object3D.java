@@ -318,26 +318,26 @@ public class Object3D extends EventDispatcher
 	 * 
 	 * @param rad the angle to rotate in radians
 	 */
-	public native void rotateX( int rad );
+	public native void rotateX( double rad );
 	
 	/** Rotates the object around y axis in local space.
 	 * 
 	 * @param rad the angle to rotate in radians
 	 */
-	public native void rotateY( int rad );
+	public native void rotateY( double rad );
 	
 	/** Rotates the object around z axis in local space.
 	 * 
 	 * @param rad the angle to rotate in radians
 	 */
-	public native void rotateZ( int rad );
+	public native void rotateZ( double rad );
 	
 	/** Calls setFromAxisAngle( axis, angle ) on the .quaternion.
 	 * 
 	 * @param axis A normalized vector in object space. 
 	 * @param angle angle in radians
 	 */
-	public native void setRotationFromAxisAngle( Vector3 axis, int angle );
+	public native void setRotationFromAxisAngle( Vector3 axis, double angle );
 	
 	/** Calls setRotationFromEuler( euler) on the .quaternion.
 	 * 
