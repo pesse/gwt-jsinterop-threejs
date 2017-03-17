@@ -10,10 +10,10 @@ import jsinterop.annotations.JsType;
 public class VolumetricFire
 {
 	public static String texturePath;
-	
+
 	@JsProperty public native Mesh getMesh();
-	
+
 	public VolumetricFire ( double fireWidth, double fireHeight, double fireDepth, double sliceSpacing, Camera camera ) {}
 
-	public native void update(int elapsed);
+	public native void update(double elapsed);
 }
