@@ -19,6 +19,7 @@ import de.pesse.gwt.jsinterop.threeJs.materials.MeshLambertMaterial;
 import de.pesse.gwt.jsinterop.threeJs.materials.MeshLambertMaterialParameters;
 import de.pesse.gwt.jsinterop.threeJs.objects.Mesh;
 import de.pesse.gwt.jsinterop.threeJs.renderers.WebGLRenderer;
+import de.pesse.gwt.jsinterop.threeJs.renderers.WebGLRendererParameters;
 import de.pesse.gwt.jsinterop.threeJs.scenes.Scene;
 import de.pesse.gwt.jsinterop.threeJs.textures.Texture;
 
@@ -61,7 +62,7 @@ public class Smoke
 		
 		if ( canvas != null )
 		{
-			renderer = new WebGLRenderer( new WebGLRenderer.ParameterBuilder()
+			renderer = new WebGLRenderer( new WebGLRendererParameters.Builder()
 				.canvas(canvas)
 				.build() );
 		}

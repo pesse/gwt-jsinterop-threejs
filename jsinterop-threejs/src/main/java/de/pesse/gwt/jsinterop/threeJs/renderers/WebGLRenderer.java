@@ -9,47 +9,11 @@ import de.pesse.gwt.jsinterop.threeJs.scenes.Scene;
 @JsType(isNative=true, namespace=ThreeJsStatics.PACKAGE_NAME)
 public class WebGLRenderer
 {
-	@JsType(isNative=true, namespace=JsPackage.GLOBAL, name="Object")
-	public static class Parameters
-	{
-		public Object canvas; // TODO: Type
-		public Object context; // TODO: Type
-		public String precision;
-		public boolean alpha;
-		public boolean premultipliedAlpha;
-		public boolean antialias;
-		public boolean stencil;
-		public boolean preserveDrawingBuffer;
-		public boolean depth;
-		public boolean loagrithmicDepthBuffer;
-	}
-	
-	public static class ParameterBuilder
-	{
-		private Parameters p;
-		
-		public ParameterBuilder()
-		{
-			p = new Parameters();
-		}
-		
-		public ParameterBuilder canvas( Object canvas )
-		{
-			p.canvas = canvas;
-			return this;
-		}
-		
-		public Parameters build()
-		{
-			return p;
-		}
-	}
-	
 	public Object domElement;
 	
 	public WebGLRenderer() {}
 	
-	public WebGLRenderer( Parameters parameters ) {}
+	public WebGLRenderer( WebGLRendererParameters parameters ) {}
 	
 	/** Attempt to allocate a texture unit for use by a shader. Will warn if trying to allocate more texture units than the GPU supports. 
 	 * This is mainly used internally. See capabilities.maxTextures.

@@ -1,17 +1,17 @@
 package de.pesse.gwt.jsinterop.threejs.examples.client;
 
-import de.pesse.gwt.jsinterop.threeJs.cameras.Camera;
+import jsinterop.annotations.JsIgnore;
+import jsinterop.annotations.JsType;
+import jsinterop.core.Window;
+import jsinterop.core.Window.AnimationFrameCallback;
 import de.pesse.gwt.jsinterop.threeJs.cameras.PerspectiveCamera;
 import de.pesse.gwt.jsinterop.threeJs.core.Clock;
 import de.pesse.gwt.jsinterop.threeJs.helpers.AxisHelper;
 import de.pesse.gwt.jsinterop.threeJs.objects.Mesh;
 import de.pesse.gwt.jsinterop.threeJs.renderers.WebGLRenderer;
+import de.pesse.gwt.jsinterop.threeJs.renderers.WebGLRendererParameters;
 import de.pesse.gwt.jsinterop.threeJs.scenes.Scene;
 import de.pesse.gwt.jsinterop.volumetricFire.VolumetricFire;
-import jsinterop.annotations.JsIgnore;
-import jsinterop.annotations.JsType;
-import jsinterop.core.Window;
-import jsinterop.core.Window.AnimationFrameCallback;
 
 @JsType(namespace="ThreeJsExamples")
 public class Fire
@@ -53,7 +53,7 @@ public class Fire
 		
 		if ( canvas != null )
 		{
-			renderer = new WebGLRenderer( new WebGLRenderer.ParameterBuilder()
+			renderer = new WebGLRenderer( new WebGLRendererParameters.Builder()
 				.canvas(canvas)
 				.build() );
 		}
